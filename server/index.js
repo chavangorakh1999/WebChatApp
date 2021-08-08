@@ -80,6 +80,12 @@ const upload = multer({storage});
 
 app.post('/api/upload', upload.single('avatar'), fileUploader);
 
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static("client/build"));
+}
+
+const PORT = process.env.PORT || 5000;
 /**
  *
  * @returns {Promise<void>}
@@ -88,7 +94,7 @@ const initApp = async () =>{
   try{
     await mongoConnect();
     console.log("DB connection established");
-    app.listen(process.env.HTTP_PORT,()=>console.log(`HTTP Server listening on ${process.env.HTTP_PORT}`));
+    app.listen(PORT,()=>console.log(`HTTP Server listening on ${PORT}`));
   }catch (e) {
     throw e;
   }

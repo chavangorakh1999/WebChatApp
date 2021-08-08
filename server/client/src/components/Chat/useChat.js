@@ -7,7 +7,7 @@ const useChat = () => {
 
   //when component mounts and changes
   useEffect(() =>{
-    socketRef.current = socketIOClient("http://localhost:5001");
+    socketRef.current = socketIOClient("http://chat.grcsdevelopersclub.tech:5001");
 
     socketRef.current.on("mostRecentMessages", (mostRecentMessages) =>{
       //on start, set as messages the mostRecentMessages
